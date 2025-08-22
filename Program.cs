@@ -1,3 +1,4 @@
+using Application.Services;
 using Data.Context;
 using Microsoft.EntityFrameworkCore;
 
@@ -7,6 +8,7 @@ builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 
 builder.Services.AddDbContext<DataContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("ExpenseDb")));
+builder.Services.AddScoped<IExpenseService, Application.Services.ExpenseService>();
 
 var app = builder.Build();
 

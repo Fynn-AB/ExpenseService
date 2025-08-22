@@ -7,9 +7,9 @@ namespace ExpenseService.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ExpenseController(Application.Services.ExpenseService expenseService) : ControllerBase
+    public class ExpenseController(Application.Services.IExpenseService expenseService) : ControllerBase
     {
-        private readonly Application.Services.ExpenseService _expenseService = expenseService;
+        private readonly Application.Services.IExpenseService _expenseService = expenseService;
 
 
         [HttpGet]
@@ -19,7 +19,7 @@ namespace ExpenseService.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateExpenseAsync(ExpenseEntity expenseEntity)
+        public async Task<IActionResult> CreateExpenseAsync(CreateExpenseDto expenseEntity)
         {
             if (!ModelState.IsValid)
             {
